@@ -1,18 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class gameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Transform listPos;
+    public GameObject playerBlock;
+    int phaseLevel;
+    string x;
     void Start()
     {
+         //x = GameObject.Find("playerBlock/index");
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        foreach (GameObject obj in listPos)
+        {
+            Destroy(obj);
+        }
     }
+
+    public void CreateNewPlayer()
+    {
+        var newPlayer = Instantiate(playerBlock, listPos);
+        phaseLevel =int.Parse( newPlayer.GetComponent<PlayerBlock>().phasenumber);
+       
+    }
+
+    public void ResetGame()
+    {
+
+    }
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
+
 }
