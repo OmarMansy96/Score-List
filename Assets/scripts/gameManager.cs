@@ -2,43 +2,58 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-
+using TMPro;
 public class gameManager : MonoBehaviour
 {
     public Transform listPos;
     public GameObject playerBlock;
-    int phaseLevel;
-    string x;
+    public GameObject exitPanel;
+    //List<int> phases;
     void Start()
     {
-         //x = GameObject.Find("playerBlock/index");
-        
+        exitPanel.SetActive(false);
     }
 
     void Update()
     {
-        foreach (GameObject obj in listPos)
+        //foreach (var obj in listPos)
+        //{
+        //    phases.Add(int.Parse(GetComponentInChildren<TMP_InputField>().text));
+
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
-            Destroy(obj);
+            exitPanel.SetActive(true);
+
         }
+
     }
 
     public void CreateNewPlayer()
     {
-        var newPlayer = Instantiate(playerBlock, listPos);
-        phaseLevel =int.Parse( newPlayer.GetComponent<PlayerBlock>().phasenumber);
+        var newPlayer = Instantiate(playerBlock, listPos.transform);
+        //newPlayer.GetComponent<PlayerBlock>().phasenumber;
        
     }
 
     public void ResetGame()
     {
+        foreach(Transform obj in listPos)
+        {
+            Destroy(obj.gameObject);
+        }
+        
 
     }
     public void ExitGame()
     {
         Application.Quit();
+
+        Debug.Log("Exit...");
     }
 
+    void showExitMessage(bool panelstatus)
+    {
+        exitPanel.SetActive(panelstatus);
 
+    }
 }

@@ -2,32 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerBlock : MonoBehaviour
 {
-    public string phasenumber,points;
-
-   
+    private int phasenumber,points;
+    //private TMP_InputField phaseInput;
 
     void Start()
     {
-        
-
+        //phaseInput =transform.Find("index").GetComponentInChildren<TMP_InputField>();
     }
 
     void Update()
     {
 
     }
-    public void SetPhases(string phase)
+
+
+    public void SetPhases(string phaseNumber)
     {
-        phasenumber = phase;
-        Debug.Log(phasenumber);
+        phasenumber = int.Parse(phaseNumber);
+        Debug.Log(phaseNumber);
     }
 
     public void SetPoints(string point)
     {
-        points = point;
+        points = int.Parse(point);
+        Debug.Log(point);
+
     }
 
 
@@ -35,37 +38,6 @@ public class PlayerBlock : MonoBehaviour
 
 
 
-    private void Start2()
-    {
-        GameObject parentObject = GameObject.Find(" Object ");
-
-        if (parentObject != null)
-        {
-            InputField[] inputFields = parentObject.GetComponentsInChildren<InputField>();
-            
-            int maxNumber = int.MinValue; 
-
-            InputField largestInputField = null; 
-
-            if (inputFields.Length > 0)
-            {
-                foreach (InputField inputField in inputFields)
-                {
-                    int currentNumber;
-                    if (int.TryParse(inputField.text, out currentNumber) && currentNumber > maxNumber)
-                    {
-                        maxNumber = currentNumber;
-                        largestInputField = inputField;
-                    }
-                }
-            }
-
-            if (largestInputField != null)
-            {
-                largestInputField.transform.SetAsFirstSibling();
-            }
-        }
-    }
 
 
 }
